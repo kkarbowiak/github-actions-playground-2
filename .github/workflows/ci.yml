@@ -1,0 +1,27 @@
+name: Print file contents
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  print:
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          fetch-depth: 2
+
+      - name: Check changes in dir_a
+        id: check_dir_a
+        run: |
+          $diff_a = git diff --name-only HEAD^ HEAD -- dir_a
+          echo $diff_a
+
+      - name: Check changes in dir_b
+        id: check_dir_b
+        run: |
+          $diff_b = git diff --name-only HEAD^ HEAD -- dir_b
+          echo $diff_b
