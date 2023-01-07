@@ -19,13 +19,13 @@ jobs:
         id: check_dir_a
         shell: bash
         run: |
-          diff_a=$(git diff --name-only HEAD^ HEAD -- dir_a)
-          if [-n $diff_a] then has_a=true else has_a=false fi
+          diff_a=$( git diff --name-only HEAD^ HEAD -- dir_a )
+          if [ -n $diff_a ]; then; has_a=true; else; has_a=false; fi;
           echo $diff_a
           echo $has_a
 
       - name: Check changes in dir_b
         id: check_dir_b
         run: |
-          diff_b=$(git diff --name-only HEAD^ HEAD -- dir_b)
+          diff_b=$( git diff --name-only HEAD^ HEAD -- dir_b )
           echo $diff_b
