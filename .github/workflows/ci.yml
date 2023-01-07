@@ -21,7 +21,7 @@ jobs:
         run: |
           diff_a=$( git diff --name-only HEAD^ HEAD -- dir_a )
           if [ ${#diff_a} -gt 1 ]; then has_a=true; else has_a=false; fi
-          echo "::set-output name=has_changes::$has_a"
+          echo "has_changes=$has_a" >> $GITHUB_OUTPUT
           echo $diff_a
           echo $has_a
 
@@ -30,7 +30,7 @@ jobs:
         run: |
           diff_b=$( git diff --name-only HEAD^ HEAD -- dir_b )
           if [ ${#diff_b} -gt 1 ]; then has_b=true; else has_b=false; fi
-          echo "::set-output name=has_changes::$has_b"
+          echo "has_changes=$has_b" >> $GITHUB_OUTPUT
           echo $diff_b
           echo $has_b
 
