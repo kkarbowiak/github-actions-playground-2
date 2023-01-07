@@ -20,7 +20,7 @@ jobs:
         shell: bash
         run: |
           diff_a=$( git diff --name-only HEAD^ HEAD -- dir_a )
-          if [ -n $diff_a ]; then; has_a=true; else; has_a=false; fi;
+          if [ -n $diff_a ]; then has_a=true; else has_a=false; fi
           echo $diff_a
           echo $has_a
 
