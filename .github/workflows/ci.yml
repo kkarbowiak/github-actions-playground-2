@@ -17,12 +17,13 @@ jobs:
 
       - name: Check changes in dir_a
         id: check_dir_a
+        shell: bash
         run: |
-          $diff_a=`git diff --name-only HEAD^ HEAD -- dir_a`
+          diff_a=`git diff --name-only HEAD^ HEAD -- dir_a`
           echo $diff_a
 
       - name: Check changes in dir_b
         id: check_dir_b
         run: |
-          $diff_b=`git diff --name-only HEAD^ HEAD -- dir_b`
+          diff_b=`git diff --name-only HEAD^ HEAD -- dir_b`
           echo $diff_b
