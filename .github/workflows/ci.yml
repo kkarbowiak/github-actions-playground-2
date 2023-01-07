@@ -21,6 +21,7 @@ jobs:
         run: |
           diff_a=$( git diff --name-only HEAD^ HEAD -- dir_a )
           if [ ${#diff_a} -gt 1 ]; then has_a=true; else has_a=false; fi
+          echo "::set-output name=has_changes::$has_a"
           echo $diff_a
           echo $has_a
 
@@ -29,5 +30,20 @@ jobs:
         run: |
           diff_b=$( git diff --name-only HEAD^ HEAD -- dir_b )
           if [ ${#diff_b} -gt 1 ]; then has_b=true; else has_b=false; fi
+          echo "::set-output name=has_changes::$has_b"
           echo $diff_b
           echo $has_b
+
+      - name: Print contents in dir_a
+        if: steps.check_dir_a.outputs.has_changes == 'true'
+        shell: bash
+        run: |
+          echo 'Contents of dir_a/list_a.txt'
+          cat dir_a/list_a.txt
+
+      - name: Print contents in dir_b
+        if: steps.check_dir_b.outputs.has_changes == 'true'
+        shell: bash
+        run: |
+          echo 'Contents of dir_b/list_b.txt'
+          cat dir_b/list_b.txt
